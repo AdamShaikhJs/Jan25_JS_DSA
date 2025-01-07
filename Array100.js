@@ -42,6 +42,12 @@ return {first, second};
 console.log(secondHighestNum([1, 2, 3, 4, 22, , 42, , 42, 23]));
 
 
+const findSecondMax=(arr)=>{
+    const result = arr.filter((val,i)=> val !== Math.max(...arr))
+    return Math.max(...result)
+}
+console.log(findSecondMax([1,24,2,1,42,4]))
+
 // 3. Reverse an Array--------------------------------------------------------------------------------------
 function reverseArray(arr) {
 return arr.reverse();
@@ -204,28 +210,23 @@ return "Not sorted";
 }
 console.log(checkArrayOrder([1, 2, 3, 4, 5])); // Output: "Ascending"
 
-// 5 Find the Majority Element -----------------------------
+//17 Find the Majority Element  --------------------------------------------------------------------------------------------
 function findMajorityElement(nums) {
 let counts = {};
 let majorityCount = Math.floor(nums.length / 2);
-
-// Count occurrences of each element
 for (let num of nums) {
   counts[num] = (counts[num] || 0) + 1;
-
-  // Check if this element is the majority element
   if (counts[num] >= majorityCount) {
     return num;
   }
 }
-
 return null; // No majority element exists
 }
 let nums = [2, 2, 1, 1, 1, 2, 2];
 console.log(findMajorityElement(nums)); // Output: 2
 
 
-// Rearrange Array Based on Index Mapping.  Problem: Rearrange an array so that arr[i] goes to index[i].
+//18 Rearrange Array Based on Index Mapping --------------------------------------------------------------------------------
 // Example: Input: [50, 40, 70, 60, 90], index = [3, 0, 4, 1, 2], Output: [40, 60, 90, 50, 70]
 function rearrangeArray(arr, index) {
 let result = new Array(arr.length);       // Create a new array with the same length as arr
@@ -236,13 +237,7 @@ return result;
 }
 console.log( rearrangeArray([50, 40, 70, 60, 90], [3, 0, 4, 1, 2])); // Output: [40, 60, 90, 50, 70]
 
-
-
-
-
-
-
-//Otp generate 
+//19 Otp generate  ------------------------------------------------------------------------------------------------------
 function generateAlphanumericOTP(length = 6) {
 const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 let otp = '';
@@ -253,6 +248,9 @@ return otp;
 }
 console.log(generateAlphanumericOTP())
 
+const generateOTP2 = (length = 6) => Array.from({ length }, () => Math.floor(Math.random() * 10)).join('');
+console.log("Generated OTP:-", generateOTP2());
+
 function generateOTP(length = 6) {
 let otp = '';
 for (let i = 0; i < length; i++) {
@@ -260,13 +258,54 @@ for (let i = 0; i < length; i++) {
 }
 return otp;
 }
+console.log("Generated OTP:", generateOTP());
 
-// Example usage
-const otp = generateOTP();
-console.log("Generated OTP:", otp);
+// 20 : Creating an Array with Random Numbers      ----------------------------------------------------------------------
+const randomNumbers = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10));
+console.log(randomNumbers);   //[3, 7, 1, 9, 0, 4, 2, 8, 5, 6] // (Values will vary on each run)
 
 
-const generateOTP2 = (length = 6) => Array.from({ length }, () => Math.floor(Math.random() * 10)).join('');
-// Example usage
-const otp2 = generateOTP2();
-console.log("Generated OTP:", otp2);
+// 21 : Creating an Array with a Range of Numbers   ---------------------------------------------------------------------
+const range = Array.from({ length: 10 }, (_, index) => index + 1);
+console.log(range);       // Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+const data = Array.from({ length: 2 }, (_, i) => `user - ${i}`);
+console.log(data);
+// [
+//   "user - 0",
+//   "user - 1",
+// ]
+
+//22 : Creating an Array of Dummy Objects  -----------------------------------------------------------------------------
+const dummyData = Array.from({ length: 5 }, (_, index) => ({
+  id: index + 1,
+  name: `User${index + 1}`,
+  age: Math.floor(Math.random() * 40) + 20, // Random age between 20 and 59
+  email: `user${index + 1}@example.com`,
+}));
+
+console.log(dummyData)
+// O/p :-->
+// [
+//   { id: 1, name: 'User1', age: 24, email: 'user1@example.com' },
+//   { id: 2, name: 'User2', age: 31, email: 'user2@example.com' },
+//   { id: 3, name: 'User3', age: 47, email: 'user3@example.com' },
+//   { id: 4, name: 'User4', age: 29, email: 'user4@example.com' },
+//   { id: 5, name: 'User5', age: 39, email: 'user5@example.com' },
+// ];
+
+//------------------------------------------------------------------------------------------------------
+// Math.random()
+// Generates a random decimal (floating-point) number between 0 (inclusive) and 1 (exclusive).
+// Example output: 0.235, 0.999, 0.5.
+
+// Math.floor()
+// Takes the decimal result from step 2 and rounds it down to the nearest whole number.
+// Example:
+// If Math.random() * 40 is 20.4, then Math.floor(20.4) = 20.
+// If Math.random() * 40 is 39.96, then Math.floor(39.96) = 39.
+//------------------------------------------------------------------------------------------------------
+
+
+
+
