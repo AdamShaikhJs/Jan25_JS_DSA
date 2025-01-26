@@ -1,4 +1,4 @@
-// 1. Find the Maximum and Minimum Element--------------------------------------------------------------------------------
+// 1. Find the Maximum and Minimum Element-----------------------------------------------------------------
 function findMinMax(arr) {
   return { min: Math.min(...arr), max: Math.max(...arr) };
 }
@@ -41,12 +41,6 @@ return {first, second};
 }
 console.log(secondHighestNum([1, 2, 3, 4, 22, , 42, , 42, 23]));
 
-
-const findSecondMax=(arr)=>{
-    const result = arr.filter((val,i)=> val !== Math.max(...arr))
-    return Math.max(...result)
-}
-console.log(findSecondMax([1,24,2,1,42,4]))
 
 // 3. Reverse an Array--------------------------------------------------------------------------------------
 function reverseArray(arr) {
@@ -227,7 +221,8 @@ console.log(findMajorityElement(nums)); // Output: 2
 
 
 //18 Rearrange Array Based on Index Mapping --------------------------------------------------------------------------------
-// Example: Input: [50, 40, 70, 60, 90], index = [3, 0, 4, 1, 2], Output: [40, 60, 90, 50, 70]
+// Example:  Output: [40, 60, 90, 50, 70]
+let Input=[50, 40, 70, 60, 90];let index = [3, 0, 4, 1, 2];
 function rearrangeArray(arr, index) {
 let result = new Array(arr.length);       // Create a new array with the same length as arr
 for (let i = 0; i < arr.length; i++) {
@@ -235,7 +230,7 @@ for (let i = 0; i < arr.length; i++) {
 }
 return result;
 }
-console.log( rearrangeArray([50, 40, 70, 60, 90], [3, 0, 4, 1, 2])); // Output: [40, 60, 90, 50, 70]
+console.log( rearrangeArray(Input,index)); // Output: [40, 60, 90, 50, 70]
 
 //19 Otp generate  ------------------------------------------------------------------------------------------------------
 function generateAlphanumericOTP(length = 6) {
@@ -307,5 +302,47 @@ console.log(dummyData)
 //------------------------------------------------------------------------------------------------------
 
 
+//23 find the maximum count of consecutive 1s in an array,
+function findMaxConsecutiveOnes(arr) {
+  let maxCount = 0;
+  let currentCount = 0;
+
+  for (const num of arr) {
+    currentCount = num === 1 ? currentCount + 1 : 0;
+    maxCount = Math.max(maxCount, currentCount);
+  }
+
+  return maxCount;
+}
+
+// Example usage:
+const arr = [1, 1, 0, 1, 1, 1, 0, 1];
+console.log(findMaxConsecutiveOnes(arr)); // Output: 3
 
 
+
+
+// document.cookie = "name=Adam; age=30";
+
+
+
+const numbers = [1, 2, 3];
+const result = numbers.map(num => {
+  if (num > 2) return num;
+});
+console.log(result); // [undefined, undefined, 3]
+
+
+// How can you skip elements with map()?
+const filtered = numbers.map(num => (num > 1 ? num : null));
+console.log(filtered); // [null, 2, 3]
+
+
+// 7. How does map() handle empty slots in arrays?
+const arrF = [1, , 3]; // Sparse array
+const resultF = arr.map(num => (num ? num * 2 : 0));
+console.log(resultF); // [2, , 6]
+
+const arrD = [1, , 3]; // Sparse array with an empty slot
+const resultD = arr.map((x) => x * 2);
+console.log(resultD); // Output: [2, <1 empty item>, 6]

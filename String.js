@@ -20,8 +20,6 @@ const isPalindrome = (str) => {
     for (let i = cleanedStr.length - 1; i >= 0; i--) {
         reversedStr += cleanedStr[i];
     }
-  
-    // Compare the cleaned string with its reversed version
     return cleanedStr === reversedStr;
 };
 
