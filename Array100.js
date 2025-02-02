@@ -319,6 +319,71 @@ function findMaxConsecutiveOnes(arr) {
 const arr = [1, 1, 0, 1, 1, 1, 0, 1];
 console.log(findMaxConsecutiveOnes(arr)); // Output: 3
 
+// 24 custom reduce method interview task----------------------------------------------------------------------------------
+function customReduce(arr, callback, initialValue) {
+  let accumulator = initialValue;
+  let startIndex = 0;
+
+  // If no initial value is provided, use the first element as the accumulator
+  if (arguments.length < 3) {
+    accumulator = arr[0];
+    startIndex = 1;
+  }
+  // Loop through the array and apply the callback to each element
+  for (let index = startIndex; index < arr.length; index++) {
+    accumulator = callback(accumulator, arr[index], index, arr);
+  }
+  return accumulator;
+}
+
+const numbersArr = [1, 2, 3, 4, 5];
+const sumWithInitialValue = customReduce(numbersArr, (accumulator, currentValue) => {
+  return accumulator + currentValue;
+}, 10);
+
+console.log(); // Output: 25
+
+console.log("Custom Reduce Method-->",sumWithInitialValue); // Output: 25
+
+
+
+// 24 custom map Method interview task----------------------------------------------------------------------------------
+function customMap(arr, callback) {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    result.push(callback(arr[i], i, arr));
+  }
+  return result;
+}
+const numbersMap = [1, 2, 3, 4, 5];
+const doubledNumbers = customMap(numbersMap, (num) => num * 2);
+console.log("Custom map method---->",doubledNumbers); // Output: [2, 4, 6, 8, 10]
+
+// 24 custom Filter Method interview task----------------------------------------------------------------------------------
+function customFilter(arr, callback) {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (callback(arr[i], i, arr)) {
+      result.push(arr[i]); // Add only if callback returns true
+    }
+  }
+  return result;
+}
+const numbersFilter = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const evenNumbers = customFilter(numbersFilter, (num) => num % 2 === 0);
+console.log(evenNumbers); // Output: [2, 4, 6, 8]
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -326,23 +391,26 @@ console.log(findMaxConsecutiveOnes(arr)); // Output: 3
 
 
 
-const numbers = [1, 2, 3];
-const result = numbers.map(num => {
-  if (num > 2) return num;
-});
-console.log(result); // [undefined, undefined, 3]
+// const numbers = [1, 2, 3];
+// const result = numbers.map(num => {
+//   if (num > 2) return num;
+// });
+// console.log(result); // [undefined, undefined, 3]
 
 
-// How can you skip elements with map()?
-const filtered = numbers.map(num => (num > 1 ? num : null));
-console.log(filtered); // [null, 2, 3]
+// // How can you skip elements with map()?
+// const filtered = numbers.map(num => (num > 1 ? num : null));
+// console.log(filtered); // [null, 2, 3]
 
 
-// 7. How does map() handle empty slots in arrays?
-const arrF = [1, , 3]; // Sparse array
-const resultF = arr.map(num => (num ? num * 2 : 0));
-console.log(resultF); // [2, , 6]
+// // 7. How does map() handle empty slots in arrays?
+// const arrF = [1, , 3]; // Sparse array
+// const resultF = arr.map(num => (num ? num * 2 : 0));
+// console.log(resultF); // [2, , 6]
 
-const arrD = [1, , 3]; // Sparse array with an empty slot
-const resultD = arr.map((x) => x * 2);
-console.log(resultD); // Output: [2, <1 empty item>, 6]
+// const arrD = [1, , 3]; // Sparse array with an empty slot
+// const resultD = arr.map((x) => x * 2);
+// console.log(resultD); // Output: [2, <1 empty item>, 6]
+
+
+

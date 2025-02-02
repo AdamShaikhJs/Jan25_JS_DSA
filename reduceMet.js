@@ -3,6 +3,8 @@
 const numbers = [10, 20, 30];
 const sum = numbers.reduce((acc, num) => acc + num, 0); // Output: 60
 
+
+
 // 1. Find Maximum Value in Array
 // const numbers = [3, 7, 2, 9, 5];
 const max = numbers.reduce((acc, num) => (num > acc ? num : acc), numbers[0]); // Output: 9
@@ -156,6 +158,31 @@ const totalAmount = orders.reduce((acc, order) => acc + order.amount, 0); // Out
 
 
 
+// 11 custom reduce method interview task
+function customReduce(arr, callback, initialValue) {
+  let accumulator = initialValue;
+  let startIndex = 0;
+
+  // If no initial value is provided, use the first element as the accumulator
+  if (arguments.length < 3) {
+    accumulator = arr[0];
+    startIndex = 1;
+  }
+
+  // Loop through the array and apply the callback to each element
+  for (let index = startIndex; index < arr.length; index++) {
+    accumulator = callback(accumulator, arr[index], index, arr);
+  }
+
+  return accumulator;
+}
+// const numbers = [1, 2, 3, 4, 5];
+
+// const sumWithInitialValue = customReduce(numbers, (accumulator, currentValue) => {
+//   return accumulator + currentValue;
+// }, 10);
+
+// console.log(sumWithInitialValue); // Output: 25
 
 
 
@@ -297,3 +324,81 @@ console.log(MyModule.getPrivateVariable()); // Output: New value
 
 
 
+
+const fetchData = () => {
+  return new Promise((resolve, reject) => {
+    console.log("Fetching data...");
+    setTimeout(() => {
+      const success = true; // Simulate success or failure
+      if (success) {
+        resolve("Data loaded successfully!");
+      } else {
+        reject("Error: Failed to fetch data.");
+      }
+    }, 2000);
+  });
+};
+
+fetchData()
+  .then((message) => {
+    console.log("Success:", message); // Handle success
+    return "Processing data..."; // Chain a new promise
+  })
+  .then((processingMessage) => {
+    console.log(processingMessage); // Handle next step
+  })
+  .catch((error) => {
+    console.error(error); // Handle errors
+  })
+  .finally(() => {
+    console.log("Done fetching data."); // Cleanup
+  });
+  
+  const authenticateUser = (username, password) => {
+  return new Promise((resolve, reject) => {
+    console.log("Authenticating user...");
+
+    setTimeout(() => {
+      if (username === "admin" && password === "1234") {
+        resolve("Authentication successful!");
+      } else {
+        reject("Invalid username or password.");
+      }
+    }, 1500); // Simulate a delay for authentication
+  });
+};
+
+// Consuming the promise
+authenticateUser("admin", "1234")
+  .then((message) => {
+    console.log("Success:", message);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+
+
+
+const task1 = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve("Task 1 completed"), 1000);
+  });
+};
+
+const task2 = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve("Task 2 completed"), 1000);
+  });
+};
+
+task1()
+  .then((message1) => {
+    console.log(message1); // Logs "Task 1 completed"
+    return task2(); // Return another promise
+  })
+  .then((message2) => {
+    console.log(message2); // Logs "Task 2 completed"
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
